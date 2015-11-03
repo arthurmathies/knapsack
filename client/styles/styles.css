@@ -6,33 +6,22 @@ li {
   text-decoration: none;
 }
 
-
-/*
-if we want the scroll through feature this might
-need some extra modifications
-.fixed {
-        position: fixed;
-        width: 25%;
-}
-.scrollit {
-        float: left;
-        width: 71%
-}*/
-
 body {
   width: 100%;
   height: 600px;
   font-family: 'Roboto', sans-serif;
 }
 
-.row, header {
+.row,
+header {
   position: relative;
   width: 80%;
   margin: 0 auto;
-  padding-top: 50px; 
+  padding-top: 50px;
 }
 
-input[type=text]:focus, input[type=password]:focus{
+input[type=text]:focus,
+input[type=password]:focus {
   box-shadow: 0 0 5px rgba(184, 233, 134, 1);
   border: 1px solid rgba(184, 233, 134, 1);
 }
@@ -54,7 +43,8 @@ i {
   color: #4A4A4A;
 }
 
-#sign-up-button, #logout-button {
+#sign-up-button,
+#logout-button {
   -moz-border-radius: 11px;
   -webkit-border-radius: 11px;
   border-radius: 11px;
@@ -74,20 +64,23 @@ a.navbar-brand {
   color: #4A4A4A;
 }
 
-.pagination>.active>a, .pagination>.active>a:hover   {
+.pagination>.active>a,
+.pagination>.active>a:hover {
   background-color: #B8E986;
-  border-color:#B8E986;
+  border-color: #B8E986;
   color: #4A4A4A;
 }
 
-.pagination>li>a{
+.pagination>li>a {
   color: #4A4A4A;
 }
+
 .navbar-right {
   padding-right: 20px;
 }
 
-#sign-up-button:hover, #logout-button:hover {
+#sign-up-button:hover,
+#logout-button:hover {
   background-color: #B8E986;
   opacity: 50%;
 }
@@ -135,7 +128,7 @@ button {
   overflow-y: scroll;
 }
 
-.uib-dropdown-menu>li{
+.uib-dropdown-menu>li {
   padding: 0 5px;
   cursor: pointer;
   border-top: 5px;
@@ -202,9 +195,11 @@ a.book-category {
   padding-top: 50px;
 }
 
-.book-table, .landing-table {
-  text-transform:capitalize;
+.book-table,
+.landing-table {
+  text-transform: capitalize;
 }
+
 table {
   border: 3px solid #B8E986;
   border-collapse: inherit;
