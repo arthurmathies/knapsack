@@ -7,7 +7,7 @@
     <!-- USERNAME -->
     <div class="form-group">
       <label>Username</label>
-      <input type="text" name="username" class="form-control" ng-model="user.username" ng-minlength="3" ng-maxlength="15" required>
+      <input type="text" name="username" class="form-control" ng-model="user.username" ng-minlength="3" ng-maxlength="15" autocomplete="off"required>
       <p ng-show="form.userForm.username.$error.minlength" class="help-block">Username is too short.</p>
       <p ng-show="form.userForm.username.$error.maxlength" class="help-block">Username is too long.</p>
     </div>
