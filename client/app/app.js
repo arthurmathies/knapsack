@@ -7,7 +7,7 @@ angular.module("knapsack", [
     "knapsack.sidebar",
     "knapsack.auth"
   ])
-  .controller('AppController', function($scope, $location, Auth, AUTH_EVENTS) {
+  .controller("AppController", function($scope, $location, Auth, AUTH_EVENTS) {
     $scope.currentUser = null;
     $scope.isAuthenticated = Auth.isAuthenticated;
 
@@ -16,8 +16,8 @@ angular.module("knapsack", [
     };
 
     $scope.$on(AUTH_EVENTS.logoutSuccess, $scope.setCurrentUser(null));
-    $scope.$on(AUTH_EVENTS.notAuthenticated, $location.path('/landing'));
-    $scope.$on(AUTH_EVENTS.loginFailed, $location.path('/landing'))
+    $scope.$on(AUTH_EVENTS.notAuthenticated, $location.path("/landing"));
+    $scope.$on(AUTH_EVENTS.loginFailed, $location.path("/landing"));
   })
   .config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $urlRouteProvider) {
     $urlRouteProvider.otherwise("/");
@@ -75,20 +75,20 @@ angular.module("knapsack", [
       });
 
   }])
-  .constant('AUTH_EVENTS', {
-    loginSuccess: 'auth-login-success',
-    loginFailed: 'auth-login-failed',
-    logoutSuccess: 'auth-logout-success',
-    sessionTimeout: 'auth-session-timeout',
-    notAuthenticated: 'auth-not-authenticated'
+  .constant("AUTH_EVENTS", {
+    loginSuccess: "auth-login-success",
+    loginFailed: "auth-login-failed",
+    logoutSuccess: "auth-logout-success",
+    sessionTimeout: "auth-session-timeout",
+    notAuthenticated: "auth-not-authenticated"
   })
-  .run(['$rootScope', '$urlRouter', '$location', '$state', "AUTH_EVENTS", "Auth", function($rootScope, $state, $urlRouter, $location, AUTH_EVENTS, Auth) {
-    $rootScope.$on('$stateChangeStart', function(event, next, $state) {
+  .run(["$rootScope", "$urlRouter", "$location", "$state", "AUTH_EVENTS", "Auth", function($rootScope, $state, $urlRouter, $location, AUTH_EVENTS, Auth) {
+    $rootScope.$on("$stateChangeStart", function(event, next, $state) {
       // event.preventDefault();
       if ($rootScope.currentUser === null) {
         console.log("no logged in user");
         $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
-        $location.path('/landing');
+        $location.path("/landing");
       };
     });
   }]);
