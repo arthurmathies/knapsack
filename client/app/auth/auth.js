@@ -49,18 +49,8 @@ var SignupModalCtrl = function($scope, $rootScope, $location, $modalInstance, us
   $scope.submitForm = function() {
     if ($scope.form.userForm.$valid) {
       Auth.signUp($scope.user)
-      .then(function(user) {
-        if (user === "already exists"){
-          alert("Username already exists. Please choose another one.");
-        } else {
-          $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-          $scope.setCurrentUser(user);
-          $modalInstance.close();
-          $location.path("/collection/bestsellers");
-        }
-      }).catch(function(error) {
-        $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-        console.error(error);
+      .then(function() {
+
       });
     } else {
       console.log("form not valid");
@@ -77,21 +67,8 @@ var SigninModalCtrl = function($scope, $rootScope, $location, $modalInstance, us
   $scope.submitForm = function() {
     if ($scope.form.userForm.$valid) {
       Auth.signIn($scope.user)
-        .then(function(user) {
-          if (user === "Wrong password") {
-            alert("Wrong password. Please try again.");
-          } else if (user.search("does not exist") > 0 ) {
-            alert("This username does not exist. Please sign up.");
-          } else {
-            $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-            $scope.setCurrentUser(user);
+        .then(function () {
 
-            $modalInstance.close();
-            $location.path("/collection/bestsellers");
-          }
-        }).catch(function(error) {
-          $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-          console.error(error);
         });
     } else {
       console.log("form not valid");
