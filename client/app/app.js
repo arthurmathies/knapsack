@@ -7,18 +7,6 @@ angular.module("knapsack", [
     "knapsack.sidebar",
     "knapsack.auth"
   ])
-  .controller('AppController', function($scope, $location, Auth, AUTH_EVENTS) {
-    $scope.currentUser = null;
-    $scope.isAuthenticated = Auth.isAuthenticated;
-
-    $scope.setCurrentUser = function(user) {
-      $scope.currentUser = user;
-    };
-
-    $scope.$on(AUTH_EVENTS.logoutSuccess, $scope.setCurrentUser(null));
-    $scope.$on(AUTH_EVENTS.notAuthenticated, $location.path('/landing'));
-    $scope.$on(AUTH_EVENTS.loginFailed, $location.path('/landing'))
-  })
   .config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $urlRouteProvider) {
     $urlRouteProvider.otherwise("/");
 
