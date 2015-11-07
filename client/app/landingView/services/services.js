@@ -35,7 +35,7 @@ angular.module("landing.services", [])
 
     return {
       signIn: signIn,
-      signUp: signUpw
+      signUp: signUp
     };
 
   }]);

@@ -15,6 +15,7 @@ var Promise = require("bluebird"); // for promisification
 var app = express();
 var port = process.env.PORT || 3000;
 var ip = "127.0.0.1";
+var fs = require("fs");
 
 
 /************************************************************/
@@ -65,7 +66,27 @@ app.use(session({
 }));
 
 // serve up static files
+app.get("/", function(req, res) {
+  res.set("Content-Type", "text/html");
+  fs.readFile(__dirname + "/../client/mainIndex.html", function(err, html) {
+    res.send(html);
+  });
+  // not sure why it does not work
+  // res.sendFile(__dirname + "/../client/mainIndex.html");
+});
+
+app.get("/landing", function(req, res) {
+  res.set("Content-Type", "text/html");
+  fs.readFile(__dirname + "/../client/landingIndex.html", function(err, html) {
+    res.send(html);
+  });
+  // not sure why it does not work
+  // res.sendFile(__dirname + "/../client/landingIndex.html");
+});
+
 app.use(express.static(__dirname + "/../client"));
+app.use(express.static(__dirname + "/../client/app/landingView"));
+app.use(express.static(__dirname + "/../client/app/mainView"));
 
 
 /************************************************************/
@@ -424,7 +445,7 @@ app.get("/api/friends", function(req, res) {
 function isAuthenticated(req, res, next) {
   if (req.session.user) {
     next();
-  }else{
+  } else {
     req.session.error = "Access denied";
     res.redirect("/landing");
   }

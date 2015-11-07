@@ -55,7 +55,7 @@ var SignupModalCtrl = function($scope, $location, $modalInstance, userForm, Auth
   };
 };
 
-var SigninModalCtrl = function($scope, $location, $modalInstance, userForm) {
+var SigninModalCtrl = function($scope, $location, $modalInstance, userForm, Auth) {
   $scope.form = {};
   $scope.submitForm = function() {
     Auth.signIn($scope.user)
