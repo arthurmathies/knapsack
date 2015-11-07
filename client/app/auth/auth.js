@@ -53,6 +53,7 @@ var SignupModalCtrl = function($scope, $rootScope, $location, $modalInstance, us
 
       });
     } else {
+      //show the user somehow that the form is not valid if necessary maybe we check the form even before that happens
       console.log("form not valid");
     }
   };
@@ -71,6 +72,7 @@ var SigninModalCtrl = function($scope, $rootScope, $location, $modalInstance, us
 
         });
     } else {
+      //show the user somehow that the form is not valid
       console.log("form not valid");
     }
   };
