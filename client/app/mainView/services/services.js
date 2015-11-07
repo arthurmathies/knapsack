@@ -1,80 +1,4 @@
-angular.module("knapsack.services", [])
-  .service("Session", function() {
-    this.create = function(sessionId, username) {
-      this.id = sessionId;
-      this.username = username;
-    };
-    this.destroy = function() {
-      this.id = null;
-      this.username = null;
-    };
-  })
-  .factory("Auth", ["$http", "Session", function($http, Session) {
-    var signUp = function(user) {
-      return $http({
-        method: "POST",
-        url: "api/signup",
-        data: user
-      }).then(function succesCallback(resp) {
-        if (resp.data.constructor === String && resp.data.search("already taken") > 0) {
-          return "already exists";
-        } else {
-          Session.create(resp.data.id, resp.data.user);
-          return resp.data.user;
-        }
-      }, function errorCallback(resp) {
-        console.log(resp.status + ": failed to signup user");
-        return resp;
-      });
-    };
-
-    var signIn = function(user) {
-      return $http({
-        method: "POST",
-        url: "api/signin",
-        data: user
-      }).then(function succesCallback(resp) {
-        if (resp.data === "Wrong password" || resp.data.constructor === String) {
-          return resp.data;
-        }
-        Session.create(resp.data.id, resp.data.user);
-        return resp.data.user;
-      }, function errorCallback(resp) {
-        console.log(resp.status + ": incorrect username or password");
-        return resp;
-      });
-    };
-
-    var logOut = function(user) {
-      return $http({
-        method: "POST",
-        url: "api/logout",
-        data: JSON.stringify({
-          user: user
-        })
-      }).then(function succesCallback(resp) {
-        console.log("succesfully logged out");
-        Session.destroy();
-        return resp;
-      }, function errorCallback(resp) {
-        console.log(resp.status + ": unable to logout");
-        return resp;
-      });
-    };
-
-    var isAuthenticated = function() {
-      return !!Session.username;
-    };
-
-    return {
-      signIn: signIn,
-      signUp: signUp,
-      isAuthenticated: isAuthenticated,
-      logOut: logOut
-    };
-
-  }])
-
+angular.module("main.services", [])
 
 .factory("Collections", ["$http", function($http) {
 
@@ -248,4 +172,25 @@ angular.module("knapsack.services", [])
       shareBook: shareBook
     };
 
+  }])
+  .factory("Auth", ["$http", function($http) {
+    var logOut = function(user) {
+      return $http({
+        method: "POST",
+        url: "api/logout",
+        data: JSON.stringify({
+          user: user
+        })
+      }).then(function succesCallback(resp) {
+        console.log("succesfully logged out");
+        return resp;
+      }, function errorCallback(resp) {
+        console.log(resp.status + ": unable to logout");
+        return resp;
+      });
+    };
+
+    return {
+      logOut: logOut
+    };
   }]);

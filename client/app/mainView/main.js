@@ -2,9 +2,10 @@ angular.module("main", [
     "ui.router",
     "ui.bootstrap",
     "smart-table",
-    "knapsack.services",
-    "knapsack.main",
-    "knapsack.sidebar"
+    "main.services",
+    "main.main_lists",
+    "main.sidebar",
+    "main.header"
   ])
   .config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $urlRouteProvider) {
     $urlRouteProvider.otherwise("/");
@@ -14,19 +15,19 @@ angular.module("main", [
         url: "/",
         views: {
           "main": {
-            templateUrl: "app/dashboard/dashboard.html"
+            templateUrl: "main.html"
           },
           "main_lists@dashboard": {
-            templateUrl: "app/main_lists/main.html",
+            templateUrl: "main_lists/main_lists.html",
             controller: "MainController"
           },
           "sidebar@dashboard": {
-            templateUrl: "app/sidebar/sidebar.html",
+            templateUrl: "sidebar/sidebar.html",
             controller: "SidebarController",
           },
           "header@dashboard": {
-            templateUrl: "app/auth/header.html",
-            controller: "authController",
+            templateUrl: "header/header.html",
+            controller: "HeaderController",
           }
         }
       })
@@ -34,19 +35,19 @@ angular.module("main", [
         url: "/collection/:collection",
         views: {
           "main": {
-            templateUrl: "app/dashboard/dashboard.html"
+            templateUrl: "main.html"
           },
-          "main_lists@collection": {
-            templateUrl: "app/main_lists/main.html",
+          "main_lists@dashboard": {
+            templateUrl: "main_lists/main_lists.html",
             controller: "MainController"
           },
-          "sidebar@collection": {
-            templateUrl: "app/sidebar/sidebar.html",
+          "sidebar@dashboard": {
+            templateUrl: "sidebar/sidebar.html",
             controller: "SidebarController",
           },
-          "header@collection": {
-            templateUrl: "app/auth/header.html",
-            controller: "authController",
+          "header@dashboard": {
+            templateUrl: "header/header.html",
+            controller: "HeaderController",
           }
         }
       });

@@ -1,4 +1,4 @@
-angular.module("knapsack.main", [])
+angular.module("main.main_lists", [])
   .controller("MainController", ["$scope", "$window", "$location", "$http", "Contents", function($scope, $window, $location, $http, Contents) {
     $scope.newBook = {
       title: "",

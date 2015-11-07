@@ -1,4 +1,4 @@
-angular.module("knapsack.sidebar", [])
+angular.module("main.sidebar", [])
   .controller("SidebarController", ["$scope", "Collections", function($scope, Collections) {
 
     $scope.data = {};

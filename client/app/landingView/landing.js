@@ -1,10 +1,11 @@
 angular.module("landing", [
   "ui.router",
   "ui.bootstrap",
-  "landing.auth"
+  "landing.auth",
+  "landing.services"
 ])
 
-.config(["$stateProvider", "$urlRouteProvider", function landingRouting($stateProvider, $urlRouteProvider) {
+.config(["$stateProvider", "$urlRouterProvider", function landingRouting($stateProvider, $urlRouteProvider) {
   $urlRouteProvider.otherwise("/landing");
 
   $stateProvider
@@ -12,7 +13,7 @@ angular.module("landing", [
       url: "/landing",
       views: {
         "main": {
-          templateUrl: "app/landing/landing.html",
+          templateUrl: "landing.html",
           controller: "authController"
         }
       }
