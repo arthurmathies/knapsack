@@ -1,8 +1,6 @@
-angular.module("knapsack.auth", ["ui.router"])
+angular.module("landing.auth", ["ui.router"])
 
-.controller("authController", ["$scope", "$rootScope", "$location", "$uibModal", "$log", "Auth", "AUTH_EVENTS", function($scope, $rootScope, $location, $uibModal, $log, Auth, AUTH_EVENTS) {
-  
- 
+.controller("authController", ["$scope", "$rootScope", "$location", "$uibModal", "$log", "Auth", function($scope, $rootScope, $location, $uibModal, $log, Auth, AUTH_EVENTS) {
 
   $scope.signupOpen = function() {
     var modalInstance = $uibModal.open({
@@ -32,14 +30,14 @@ angular.module("knapsack.auth", ["ui.router"])
     });
   };
 
-  $scope.logOut = function () {
+  $scope.logOut = function() {
     Auth.logOut($scope.currentUser)
-    .then(function (resp){
-      if (resp.status === 200){
-        $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
-        $location.path("/landing")
-      }
-    })
+      .then(function(resp) {
+        if (resp.status === 200) {
+          $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
+          $location.path("/landing")
+        }
+      })
   };
 
 }]);
@@ -49,9 +47,9 @@ var SignupModalCtrl = function($scope, $rootScope, $location, $modalInstance, us
   $scope.submitForm = function() {
     if ($scope.form.userForm.$valid) {
       Auth.signUp($scope.user)
-      .then(function() {
+        .then(function() {
 
-      });
+        });
     } else {
       //show the user somehow that the form is not valid if necessary maybe we check the form even before that happens
       console.log("form not valid");
@@ -68,7 +66,7 @@ var SigninModalCtrl = function($scope, $rootScope, $location, $modalInstance, us
   $scope.submitForm = function() {
     if ($scope.form.userForm.$valid) {
       Auth.signIn($scope.user)
-        .then(function () {
+        .then(function() {
 
         });
     } else {

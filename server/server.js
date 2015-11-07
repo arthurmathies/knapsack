@@ -421,6 +421,15 @@ app.get("/api/friends", function(req, res) {
   });
 });
 
+function isAuthenticated(req, res, next) {
+  if (req.session.user) {
+    next();
+  }else{
+    req.session.error = "Access denied";
+    res.redirect("/landing");
+  }
+}
+
 /************************************************************/
 // HANDLE WILDCARD ROUTES - IF ALL OTHER ROUTES FAIL
 /************************************************************/
